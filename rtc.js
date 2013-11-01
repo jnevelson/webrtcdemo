@@ -5,7 +5,9 @@ $(document).ready(function() {
 	sdp = me.child("sdp");
 	ice = me.child("ice");
 	presence = me.child("presence");
-	pc = new webkitRTCPeerConnection(null);
+	pc = new webkitRTCPeerConnection({
+        "iceServers": [{"url": "stun:23.21.150.121"}]
+      }, {"optional": []});
 	other = null;
 	localVid = $('#local-video');
 	remoteVid = $('#remote-video');
