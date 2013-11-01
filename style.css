@@ -1,0 +1,60 @@
+html {
+	height: 100%;
+	overflow: hidden;
+}
+body {
+	margin: 0;
+	height: 100%;
+}
+#local-video, #remote-video, #call{
+	-moz-transition: all .25s ease-in;
+	-webkit-transition: all .25s ease-in;
+	-o-transition: all .25s ease-in;
+	transition: all .25s ease-in;
+}
+#local-video,
+#remote-video {
+	width: 100%;
+	height: 50%;
+}
+#call {
+	position: absolute;
+	top: 50%;
+	right: 50%;
+	-webkit-appearance: none;
+	border: 0;
+	background: #FD5D4E;
+	color: white;
+	border-radius: 50%;
+	height: 50px;
+	width: 50px;
+	margin-right: -25px;
+	margin-top: -18px;
+	border: 3px double #fff;
+	outline:0;
+	cursor: pointer;
+}
+
+#remote-video {
+	background: #000;
+}
+#local-video {
+	background: #fff;
+}
+#remote-video.call-live {
+	background: #FD5D4E;
+}
+#local-video.call-live {
+	background: #fff;
+}
+#call.call-live{
+	border: 3px double #FD5D4E;
+	background: #fff;
+	color: #FD5D4E;
+}
+#call:hover{
+	background: #fd4635;
+}
+#call:active{
+	background: #fd2f1c
+}
