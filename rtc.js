@@ -6,8 +6,8 @@ $(document).ready(function() {
 	ice = me.child("ice");
 	presence = me.child("presence");
 	pc = new webkitRTCPeerConnection({
-        "iceServers": [{"url": "stun:23.21.150.121"}]
-      }, {"optional": []});
+		"iceServers": [{"url": "stun:23.21.150.121"}]
+	}, {"optional": []});
 	other = null;
 	localVid = $('#local-video');
 	remoteVid = $('#remote-video');
@@ -22,7 +22,7 @@ $(document).ready(function() {
 		}
 	});
 
-  navigator.webkitGetUserMedia({video:true}, function(vs) {
+	navigator.webkitGetUserMedia({video:true}, function(vs) {
 		localVid.attr('src', URL.createObjectURL(vs));
 		localVid.attr('title', name);
 		pc.addStream(vs);
@@ -62,8 +62,8 @@ $(document).ready(function() {
 
 
 function answer(answer) {
-  var desc = new RTCSessionDescription(JSON.parse(answer));
-  pc.setRemoteDescription(desc);
+	var desc = new RTCSessionDescription(JSON.parse(answer));
+	pc.setRemoteDescription(desc);
 }
 
 function initiate(userid, fromname) {
@@ -83,13 +83,13 @@ function initiate(userid, fromname) {
 }
 
 function accept(offer, fromUser) {
-  navigator.webkitGetUserMedia({video:true, audio:true}, function(vs) {
-    pc.onicecandidate = function(event) {
+	navigator.webkitGetUserMedia({video:true, audio:true}, function(vs) {
+		pc.onicecandidate = function(event) {
 			iceCallback(event, fromUser);
-    };
-    pc.addStream(vs);
+		};
+		pc.addStream(vs);
 
-    pc.onaddstream = function(obj) {
+		pc.onaddstream = function(obj) {
 			remoteVid.attr('src', URL.createObjectURL(obj.stream));
 			window.AudioContext = window.AudioContext || window.webkitAudioContext;
 			var audioContext = new AudioContext();
@@ -97,15 +97,15 @@ function accept(offer, fromUser) {
 			mediaStreamSource.connect(audioContext.destination);
 		};
 
-    var desc = new RTCSessionDescription(JSON.parse(offer));
-    pc.setRemoteDescription(desc, function() {
-      pc.createAnswer(function(answer) {
-        pc.setLocalDescription(answer, function() {
+		var desc = new RTCSessionDescription(JSON.parse(offer));
+		pc.setRemoteDescription(desc, function() {
+			pc.createAnswer(function(answer) {
+				pc.setLocalDescription(answer, function() {
 					setDescriptionCallback('answer', answer, fromUser, name);
-        }, error);
-      }, error);
-    }, error);
-  }, error);
+				}, error);
+			}, error);
+		}, error);
+	}, error);
 }
 
 function setDescriptionCallback(type, value, to, from) {
