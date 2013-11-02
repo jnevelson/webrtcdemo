@@ -1,7 +1,8 @@
 $(document).ready(function() {
 	fb = new Firebase('https://jnevelson.firebaseio.com/webrtc');
 	me = fb.push();
-	name = window.prompt("enter name");
+	// name = window.prompt("enter name");
+	name = me.name();
 	sdp = me.child("sdp");
 	ice = me.child("ice");
 	presence = me.child("presence");
@@ -91,10 +92,6 @@ function accept(offer, fromUser) {
 
 		pc.onaddstream = function(obj) {
 			remoteVid.attr('src', URL.createObjectURL(obj.stream));
-			window.AudioContext = window.AudioContext || window.webkitAudioContext;
-			var audioContext = new AudioContext();
-			var mediaStreamSource = audioContext.createMediaStreamSource(obj.stream);
-			mediaStreamSource.connect(audioContext.destination);
 		};
 
 		var desc = new RTCSessionDescription(JSON.parse(offer));
